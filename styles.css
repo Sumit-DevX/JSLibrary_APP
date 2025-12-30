@@ -1,0 +1,41 @@
+* {
+    margin: 0px;
+    padding: 0px;
+}
+
+
+body {
+    min-height: 100vh;
+    display: flex;
+}
+
+
+form {
+    border: 2px solid black;
+    height: 500px;
+    width: 500px;
+    display: flex;
+    flex-direction: column;
+    padding: 8px;
+    align-items: flex-start;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.bookEntry{
+    padding: 10px;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 30px; 
+    border-right: 2px solid black;
+    flex: 0.6;
+}
+
+
+
+.bookShelf{
+    background-color: blue;
+    flex: 1;
+}
