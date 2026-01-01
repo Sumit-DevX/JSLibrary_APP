@@ -1,2 +1,4 @@
 # JSLibrary_APP
-A simpel library app created using JS
+A simple library app made using HTML5, CSS and JavaScript
+
+
