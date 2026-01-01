@@ -55,8 +55,16 @@ function createBookCard(book){
 
     
     const deleteButton = document.createElement('button');
+    deleteButton.className = "deleteBtn";
     deleteButton.textContent = "Delete";
     
+    
+    deleteButton.addEventListener('click', (e) => {
+        e.target.parentElement.remove();
+
+        handelEmptySelf();
+    })
+
     newBookCard.appendChild(p1);
     newBookCard.appendChild(p2);
     newBookCard.appendChild(p3);
@@ -77,7 +85,7 @@ function handelEmptySelf(){
         if(!emptyMsg){
             emptyMsg = document.createElement('p');
             emptyMsg.className = "empty_msg";
-            emptyMsg.textContent = "No Books Available";
+            emptyMsg.textContent = "The Library Looks Empty";
 
             bookSelf.appendChild(emptyMsg);
         }
@@ -113,3 +121,6 @@ document.addEventListener("DOMContentLoaded", () => {
 
     handelEmptySelf();
 });
+
+
+
