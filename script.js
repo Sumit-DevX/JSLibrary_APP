@@ -15,21 +15,27 @@ function addBooktoLibrary(title,author,noOfPages,hasRead){
     newBook.id = crypto.randomUUID();
 
     myLibrary.push(newBook);
+
+    bookSelf.appendChild(
+        createBookCard(newBook)
+    );
+
+    handelEmptySelf();
 }
 
 
-function createBookCard(title,author,noOfPages,hasRead){
+function createBookCard(book){
     const newBookCard = document.createElement('div');
     newBookCard.className = "bookCard";
 
     const p1 = document.createElement('p');
-    p1.textContent = `Title: ${title}`;
+    p1.textContent = `Title: ${book.title}`;
 
     const p2 = document.createElement('p');
-    p2.textContent = `Author: ${author}`;
+    p2.textContent = `Author: ${book.author}`;
 
     const p3 = document.createElement('p');
-    p3.textContent = `Number Of Pages: ${noOfPages}`;
+    p3.textContent = `Number Of Pages: ${book.noOfPages}`;
 
     const checkboxRow = document.createElement('div');
     const label = document.createElement("label");
@@ -37,7 +43,7 @@ function createBookCard(title,author,noOfPages,hasRead){
 
     checkbox.type = "checkbox";
     checkbox.id = "hasRead";
-    if(hasRead){
+    if(book.hasRead){
         checkbox.checked = true;
     }
 
@@ -64,9 +70,9 @@ function createBookCard(title,author,noOfPages,hasRead){
 
 function handelEmptySelf(){
     const items = bookSelf.querySelectorAll('.bookCard');
-
+    
+    
     let emptyMsg = bookSelf.querySelector('.empty_msg');
-
     if(items.length === 0){
         if(!emptyMsg){
             emptyMsg = document.createElement('p');
@@ -81,11 +87,29 @@ function handelEmptySelf(){
 }
 
 
+
+
+
+const bookEntry = document.querySelector('.bookEntry form');
+
+
+const title = bookEntry.querySelector('#bookTitle');
+const author = bookEntry.querySelector('#bookAuthor');
+const totalPages = bookEntry.querySelector('#noOfPages');
+const hasRead = bookEntry.querySelector('#hasRead');
+
+const addButton = bookEntry.querySelector('#addButton')
+
+addButton.addEventListener('click', (e) => {
+    e.preventDefault();
+
+    addBooktoLibrary(title.value, author.value, totalPages.value, hasRead.checked);
+});
+
 document.addEventListener("DOMContentLoaded", () => {
     for(let book of myLibrary){
         bookSelf.appendChild(createBookCard(book.title,book.author,book.noOfPages,book.hasRead));
     }
 
     handelEmptySelf();
-})
-
+});
