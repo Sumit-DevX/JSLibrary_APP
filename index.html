@@ -14,13 +14,13 @@
         <p>Note* All field's must be filled up</p>
         <form action="POST">
             <label for="bookTitle">Book's Title: </label>
-            <input type="text" name="bookTitle" id="bookTitle" placeholder="Enter your book's name">
+            <input type="text" name="bookTitle" id="bookTitle" placeholder="Enter your book's name" required>
 
             <label for="bookAuthor">Author: </label>
-            <input type="text" name="bookAuthor" id="bookAuthor" placeholder="Enter author's name">
+            <input type="text" name="bookAuthor" id="bookAuthor" placeholder="Enter author's name" required>
 
             <label for="noOfPages">Number of Pages: </label>
-            <input type="number" name="noOfPages" id="noOfPages" placeholder="Enter a positive number">
+            <input type="number" name="noOfPages" id="noOfPages" placeholder="Enter total number of pages" required>
 
             <div class="checkboxRow">
                 <label for="hasRead">Has Read?</label>
@@ -30,8 +30,7 @@
             <button id="addButton" aria>Add to Library</button>
         </form>
     </div>
-    <div class="bookShelf">
-    </div>
+    <div class="bookShelf"></div>
     <script src="script.js"></script>
 </body>
 
