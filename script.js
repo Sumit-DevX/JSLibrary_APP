@@ -1,8 +1,8 @@
-function Book(title,author,noOfPages,haveRead) {
+function Book(title,author,noOfPages,hasRead) {
     this.title = title;
     this.author = author;
     this.noOfPages = noOfPages;
-    this.haveRead = haveRead;
+    this.hasRead = hasRead;
     this.id;
 }
 
@@ -10,15 +10,13 @@ const myLibrary = [];
 
 const bookSelf = document.querySelector(".bookShelf");
 
-function addBooktoLibrary(title,author,noOfPages,haveRead){
-    const newBook = new Book(title,author,noOfPages,haveRead);
+function addBooktoLibrary(title,author,noOfPages,hasRead){
+    const newBook = new Book(title,author,noOfPages,hasRead);
     newBook.id = crypto.randomUUID();
 
     myLibrary.push(newBook);
 }
 
-addBooktoLibrary("The Hobbit", "Sumit Nayak", 234, false);
-addBooktoLibrary("Harry Poter", "Julius Novocrono", 3000, true);
 
 function createBookCard(title,author,noOfPages,hasRead){
     const newBookCard = document.createElement('div');
@@ -63,8 +61,31 @@ function createBookCard(title,author,noOfPages,hasRead){
 }
 
 
-document.addEventListener('DOMContentLoaded', () => {
-    for(book of myLibrary){
-        bookSelf.appendChild(createBookCard(book.title,book.author,book.noOfPages,book.hasRead))
+
+function handelEmptySelf(){
+    const items = bookSelf.querySelectorAll('.bookCard');
+
+    let emptyMsg = bookSelf.querySelector('.empty_msg');
+
+    if(items.length === 0){
+        if(!emptyMsg){
+            emptyMsg = document.createElement('p');
+            emptyMsg.className = "empty_msg";
+            emptyMsg.textContent = "No Books Available";
+
+            bookSelf.appendChild(emptyMsg);
+        }
+    }else {
+        if(emptyMsg) emptyMsg.remove();
     }
+}
+
+
+document.addEventListener("DOMContentLoaded", () => {
+    for(let book of myLibrary){
+        bookSelf.appendChild(createBookCard(book.title,book.author,book.noOfPages,book.hasRead));
+    }
+
+    handelEmptySelf();
 })
+
